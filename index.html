@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+	author:		Alexandre S Ito
+	date:		12-Mar-2022
+    notes:		Project - Dice Game
+    
+    resources:
+        + COMP2123 SESSION 01/02/03/04/05/06/07/08/09/10 LECTURE
+        + COMP2123 SESSION 01 CODE FOLDER STRUCTURE
+        + https://www.quackit.com/html/html_editors/scratchpad/?example=/html/templates/grid/css_grid_layout_template_2
+        + https://favicon.io/favicon-converter/
+	
+-->
+
+<head>
+    <title>Project Dice Game - COMP2132</title>
+
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js" defer></script>
+    <script src="scripts/diceGame.js" defer="defer"></script>
+    <script src="scripts/diceInfo.js" defer="defer"></script>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <header id="page-header">
+            <h1>Project Dice Game</h1>
+        </header>
+        <main id="main-body">
+            <div id="container">
+                <div id="game-round">
+                    Round#
+                </div>
+                <div id="game-display">
+                    <div id="player-display" class="player-you">
+                        <h2>You</h2>
+                        <div id="box">
+                            <div id="box-title">
+                                <h3>Your Dice</h3>
+                            </div>
+                            <div id="box-dice-score">
+                                Dice#1
+                                <img src="images/dice-six-faces-1.png" alt="dice" id="you-dice1-image"
+                                    class="dice-image">
+                            </div>
+                            <div id="box-dice-score">
+                                Dice#2
+                                <img src="images/dice-six-faces-1.png" alt="dice" id="you-dice2-image"
+                                    class="dice-image">
+                            </div>
+                        </div>
+                        <div id="box">
+                            <div id="box-title">
+                                <h3>Your Score</h3>
+                            </div>
+                            <div id="box-dice-score">
+                                Score This Round
+                                <div id="you-round-score" class="score">0</div>
+                            </div>
+                            <div id="box-dice-score">
+                                Total Score
+                                <div id="you-total-score" class="score">0</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="player-display" class="player-opponent">
+                        <h2>Opponent</h2>
+                        <div id="box">
+                            <div id="box-title">
+                                <h3>Opponent's Dice</h3>
+                            </div>
+                            <div id="box-dice-score">
+                                Dice#1
+                                <img src="images/dice-six-faces-1.png" alt="dice" id="opponent-dice1-image"
+                                    class="dice-image">
+                            </div>
+                            <div id="box-dice-score">
+                                Dice#2
+                                <img src="images/dice-six-faces-1.png" alt="dice" id="opponent-dice2-image"
+                                    class="dice-image">
+                            </div>
+                        </div>
+                        <div id="box">
+                            <div id="box-title">
+                                <h3>Opponent's Score</h3>
+                            </div>
+                            <div id="box-dice-score">
+                                Score This Round
+                                <div id="opponent-round-score" class="score">0</div>
+                            </div>
+                            <div id="box-dice-score">
+                                Total Score
+                                <div id="opponent-total-score" class="score">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="btn-new-game">New Game</button>&nbsp;
+                <button id="btn-roll-dice">Roll Dice</button>
+            </div>
+
+            <div id="container">
+                <div id="game-information">
+                    <div id="game-info-title">How To Play</div>
+                    <button id="show-hide-play">Show</button>
+                </div>
+                <div id="how-to-play-info">
+                    <ul>
+                        <li>To start, click the 'Roll Dice' button</li>
+                        <li>To advance to the next round, click the 'Roll Dice' button again.</li>
+                        <li>After three rounds, the game is over and the final score is calculated.</li>
+                        <li>If you want to play again, click the 'New Game' button or refresh the page.</li>
+                    </ul>
+                </div>
+
+
+                <div id="game-information">
+                    <div id="game-info-title">Rules</div>
+                    <button id="show-hide-rule">Show</button>
+                </div>
+                <div id="rules-info">
+                    <ul>
+                        <li>Each round, you and the computer both roll a pari of dice.</li>
+                        <li>Your score for taht round will be based on the sum of the dice.</li>
+                        <li>If you roll doubles (e.g. a 3 and a 3) then your score is multiplied by 2.</li>
+                        <li>Rolling a 1 will give you a score of 0 for that round.</li>
+                        <li>The player who has the most points at the end of three rounds is the winner.</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <div id="main-left-side"></div>
+        <div id="main-right-side"></div>
+        <footer id="page-footer"></footer>
+    </div>
+    <section id='pop-up'>
+        <div>
+            <button id="close-pop-up">&#x2715;</button>
+            <h2>GAME OVER</h2>
+            <p id="pop-up-message"></p>
+            <button id="pop-up-ok-button">OK</button>
+        </div>
+    </section>
+</body>
+
+</html>

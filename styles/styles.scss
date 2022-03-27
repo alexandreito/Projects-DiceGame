@@ -1,0 +1,444 @@
+/*
+	author:		Alexandre S Ito
+	date:		24-Mar-2022
+    notes:		Project Dice Game
+    
+    resources:
+        + COMP2123 SESSION 01/02/03/04/05/06/07/08/09/10 LECTURE
+        + COMP2123 SESSION 01 CODE FOLDER STRUCTURE
+*/
+@charset "utf-8";
+
+//SASS variables
+$primary_color: #759EB8;
+$secondary_color: #D8E1E9;
+$tertiary_color: #abbfd6;
+
+/*
+SASS mxins - Project Requirement
+*/
+@mixin rounded-box($rounded-corners, $border-color, $background-color, $text-color){
+    border-radius:$rounded-corners;    
+    border:solid 2px $border-color;
+    background-color: $background-color;  
+    color:$text-color;  
+}
+
+button{
+    font-weight:bold;
+    padding:5px;
+    @include rounded-box(5px, $primary_color, $secondary_color, $primary_color);
+}
+
+button:hover{    
+    cursor:pointer;
+    @include rounded-box(5px, $secondary_color, $primary_color, $secondary_color);
+}
+
+/*
+end of SASS mixins
+-----------------------------------------
+*/
+
+/* ------ Fonts ------ */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
+/* ------ Browser Resets ------ */
+@import url("normalize.css");
+
+html {
+    font-size:16px;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* ------ Variables ------ */
+:root{    
+    /* universal palette */
+    --dark-color:#242424;             /* near-but-not black */
+    --light-color:rgb(245, 245, 245); /* not-quite white*/    
+    --code-color:rgb(233, 233, 233);  /* code examples stand out from block text */
+    --bad-color:rgb(85, 0, 0);        /* red means 'it's time to panic!' */  
+    --good-color:rgb(22, 75, 22);     /* green means 'let's rock!' */    
+
+    /* custom pallete from https://coolors.co/c5d5ea-759eb8-7392b7-b3c5d7-d8e1e9-db3a34-de4c46-e15c57-e46b66-e67874 */
+    --beau-blue:#C5D5EA;
+    --air-sup-blue:#759EB8;
+    --cerulean-frost:#7392B7;
+    --light-steel-blue:#B3C5D7;
+    --gainsboro:#D8E1E9;
+    --cg-red:#DB3A34;
+    --cinnabar:#DE4C46;
+    --fire-opal:#E15C57;
+    --candy-pink:#E46B66;
+    --light-coral:#E67874;
+
+    /* custom pallete from https://coolors.co/d0b8ac-f3d8c7-efe5dc-fbfefb-ffffff */
+    --silver-pink:#D0B8AC;
+    --champagne-pink:#F3D8C7;
+    --linen:#EFE5DC;
+    --baby-powder:#FBFEFB;
+
+    /* custom created green */
+    --green-custom:#87E674;
+    --pink-custom:#F3B8B5;
+
+    /* fonts */
+    --heading-font-face:"Nunito Sans";
+    --block-text-font-face:"Nunito Sans";
+    
+}
+
+/* ------ HTML Element Selectors ------ */
+body {
+    
+    margin: 0;
+    font-family: var(--block-text-font-face), 'Verdana', sans-serif;        
+    background: var(--dark-color);
+    background: linear-gradient(to right, var(--dark-color) 0%,
+                                        rgb(0, 0, 0) 20%,
+                                        rgb(0, 0, 0) 80%,
+                                        var(--dark-color) 100%); 
+    color:var(--dark-color);
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+h1, h2, h3{
+    font-family: var(--heading-font-face), 'Helvetica', sans-serif;
+    letter-spacing:3px;
+    
+}
+h2, h3{
+    text-shadow: 1px 1px 0px var(--cambridge-blue);
+    font-weight: bold;
+}
+h1, h2, h3, p {
+    margin-top: 0;
+}
+
+p,li {    
+    line-height: 1.5rem;
+    font-size: 1.05rem;
+}
+ul{
+    margin:20px 0px;
+}
+
+header {
+    background-color: var(--rich-black);    
+    color:black; 
+    padding: 20px;
+}
+header, footer{
+    background-image:linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)),url('../images/headerImage.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+header h1 {
+    margin: 0;
+    line-height: 1;
+    text-shadow: 1px 1px 0px var(--cerulean-frost), 3px 3px 0px var(--rich-black);
+    text-align: center;
+    font-size: 3em;
+}
+main {
+    padding: 20px;
+}
+
+
+input,select{
+    margin-bottom:3px;
+    padding:5px;
+    border-radius:5px;
+    color:var(--air-sup-blue);
+    font-weight: bold;
+}
+
+input[type="submit"]{
+    border-radius: 5px;
+    border:solid 2px var(--air-sup-blue);
+    background-color: var(--gainsboro);
+    color:var(--dark-color);
+    font-weight:bold;
+    padding:10px;
+    cursor:pointer;
+    width: 90%;
+}
+input[type="submit"]:disabled{
+    background-color: var(--beau-blue);
+    color:white;
+    border:solid 2px var(--cinnabar);
+}
+
+label{
+    flex:0 0 25%;
+    padding-top:5px;
+    padding-right:10px;
+   
+}
+a{
+	font-weight:bold;
+	color:var(--air-sup-blue);
+    border-bottom:solid 3px var(--cinnabar);
+    text-decoration:none;
+}
+a:hover, a:focus{
+    border-bottom:solid 3px var(--air-sup-blue);
+	text-decoration:none;   
+}
+a:active{
+    color:var(--air-sup-blue);
+}
+
+/* ------ .class Selectors ------ */
+ .main-slide {
+    margin-bottom: 0px;
+}
+
+ .main-slide img {
+    display: block;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.box {
+    padding: 10px;
+    border: 3px solid var(--air-sup-blue);
+    box-shadow: 0px 0px 5px 5px var(--cerulean-frost);
+    margin: 0 auto 30px;
+    border-radius: 5px;
+    width: 80%;
+    height: 80%;
+    background-color: white;
+}
+.button-option{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button-box{
+    margin-right: 10px;
+}
+
+.centralized{
+    text-align: center;
+}
+.player-you{
+    background-color: var(--silver-pink);
+}
+.player-opponent{
+    background-color: var(--champagne-pink);
+}
+.score{
+    display: inline-block;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 150%;
+}
+/* ------ #id Selectors ------ */
+#wrapper {
+    display: grid;
+    grid-template-areas: 
+        "header header header header"
+        "leftSide mainProduct mainProduct rightSide"
+        "footer footer footer footer";
+    grid-template-rows: 80px 1fr 70px;  
+    grid-template-columns: 2% 1fr 1fr 2%;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--light-color);
+    min-height: 100vh;
+    box-shadow: 0px 0px 5px 5px black;
+}
+#page-header {
+    grid-area: header;
+}
+#page-footer {
+    grid-area: footer;
+}
+#main-body { 
+    grid-area: mainProduct;      
+    align-items: center;
+}
+#main-left-side { 
+    grid-area: leftSide; 
+}
+#main-right-side { 
+    grid-area: rightSide; 
+}
+
+/* place a popup overlay overtop top of page content */
+#pop-up{
+	/* remove this popup from normal page flow */
+    position:fixed;
+    top:0px;
+    left:0px;    
+	/* fill the entire viewport */
+    width:100vw;
+    height:100vh;    
+	/* ensure it is over-top all other page elements */
+	z-index:1000;
+	/* transparency allows user to see content behind */
+	
+	font-size:.85em;
+}
+#pop-up div{
+	/* vertically/horizontally center this element*/
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform:translate(-50%, -50%);
+
+	/* basic box model stuff*/
+	max-width:400px;
+	min-width:300px;
+	padding:10px;
+    @include rounded-box(10px, $primary_color, $secondary_color, $primary_color);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 20px;
+}
+#pop-up-message{
+    flex: 0 0 100%;
+    text-align: center;
+    font-weight: bold;
+}
+#pop-up-ok-button{
+    flex: 0 0 50%;
+    @include rounded-box(5px, $primary_color, $tertiary_color, $primary_color);
+}
+#pop-up-ok-button:hover, 
+#pop-up-ok-button:focus, 
+#pop-up-ok-button:active{
+	background-color: var(--cerulean-frost);
+	color:white;
+}
+/* the close X button*/
+#close-pop-up{
+	font-weight: bold;
+    @include rounded-box(50%, $primary_color, $secondary_color, $primary_color);
+	/*
+	make a 'hand' pointer icon appear on mouseover
+	otherwise it will just be the usual mouse cursor arrow
+	*/
+	cursor:pointer;
+	/*
+	locate this X button in the 
+	top right corner of the popup
+	*/
+	position:absolute;
+	top:-10px;
+	right:-10px;
+}
+#close-pop-up:hover, 
+#close-pop-up:focus, 
+#close-pop-up:active{
+	background-color: var(--cerulean-frost);
+	color:white;
+	transform: scale(1.3);
+}
+
+#container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    padding:10px;
+    column-gap: 10px;
+}
+#game-display{
+    display: flex;
+    flex-wrap:wrap;
+    flex:0 0 100%;
+    text-align:center;
+}
+#player-display{
+    display: flex;
+    flex-wrap:wrap;
+    flex:0 0 50%;
+    border:solid 2px var(--cerulean-frost);
+    padding: 10px;
+    margin-top: 10px;
+    justify-content: center;
+    row-gap: 10px;
+}
+#box{
+    display: flex;
+    flex-wrap:wrap;
+    flex:0 0 100%;
+    text-align:center;
+    border:solid 2px var(--cerulean-frost);
+}
+#box-title{
+    flex:0 0 100%;
+    text-align:center;
+    border:solid 2px var(--cerulean-frost);
+    min-height: 40px;
+    padding: 2.5%;
+    background-color: black;
+    color: white;
+}
+#box-dice-score{
+    display: flex;
+    flex-wrap:wrap;
+    align-content: space-between;
+    flex:0 0 50%;
+    justify-content:center;
+    border:solid 2px var(--cerulean-frost);
+    min-height: 160px;
+    padding: 10%;
+    font-weight: bold;
+    background-color: var(--linen);
+}
+
+#container button{
+    flex:0 0 auto;
+    margin-top: 5%;
+}
+
+#game-information{
+    display: flex;
+    flex:0 0 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+#game-info-title{
+    margin-top: 5%;
+    font-weight: bold;
+}
+#game-round{
+    font-weight: bold;
+    font-size: 150%;
+}
+
+#how-to-play-info{
+    flex: 0 0 100%;
+}
+
+#rules-info{
+    flex: 0 0 100%;
+}
+/* ------ Media Queries ------ */
+@media all and (max-width: 575px) {
+    body { 
+      grid-template-areas: 
+        "header"
+        "mainProduct"
+        "footer";
+      grid-template-rows: 80px 1fr 70px;  
+      grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width:700px){
+	#pop-up{
+		font-size:1em;
+	}
+}
+
+
